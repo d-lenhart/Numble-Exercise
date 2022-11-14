@@ -15,21 +15,32 @@ namespace QuadaxCodingAssessment
         {
             bool success = false;
 
-            foreach (char c in userGuess)
+            if (userGuess.Length != 4)
             {
-                if (!this.validNumbers.Contains(c))
-                {
-                    Console.WriteLine("Invalid entry, please try again.");
-                    Console.WriteLine();
-                    return false;
-                }
-                else
-                {
-                    success = true;
-                }
+                Console.WriteLine("Invalid entry, please try again.");
+                return false;
             }
+            try
+            {
+                foreach (char c in userGuess)
+                {
+                    if (!this.validNumbers.Contains(c))
+                    {
+                        Console.WriteLine("Invalid entry, please try again.");
+                        Console.WriteLine();
+                        return false;
+                    }
+                    else
+                    {
+                        success = true;
+                    }
+                }
+            } 
+            catch(IndexOutOfRangeException)
+            {
+                Console.WriteLine("Invalid entry, please try again.");
+            }           
             return success;
-
         }
 
         public string CheckGuess(string userGuess, string generatedAnswer)
